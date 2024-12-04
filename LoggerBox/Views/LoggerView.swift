@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct LoggerView: View {
+    @State var flights: [Flight] = [Flight.init(), Flight.init()]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(flights) { flight in
+            FlightCardView(flight: flight)
+                .listRowSeparator(.hidden)
+                .frame(maxWidth: .infinity)  // Center the content
+                .padding()
+        }
+        .listStyle(.plain)  // Use plain list style
+        .background(Color(.systemBackground))  // Set background to the system's default background color
     }
 }
 
