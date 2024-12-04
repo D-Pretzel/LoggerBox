@@ -8,11 +8,52 @@
 import SwiftUI
 
 struct FlightCardView: View {
+    @State var flight: Flight
+
+    var acceptedFlight: Bool = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            // Flight Details
+            HStack {
+                Text(flight.tail_number)
+                    .frame(width: 100, height: 100, alignment: .leading)
+
+                // Data
+                VStack {
+                    HStack {
+                        Text(flight.pilot_1.last_name)
+                        Text(flight.pilot_2.last_name)
+                    }
+                    .padding()
+
+                    HStack {
+                        Text("\(flight.orm)")
+                        Text("\(flight.cg)")
+                        Text(flight.mission)
+                    }
+                }
+            }
+            .padding()
+
+            // Accept / Deny
+            HStack {
+                Button("Deny", role: .destructive) {
+                    print("Deny")
+                }
+                .buttonStyle(.borderedProminent)
+
+                Button("Approve") {
+                    print("Approve")
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .frame(width: 300, height: 200)
+        .border(Color.black)
     }
 }
 
 #Preview {
-    FlightCardView()
+    FlightCardView(flight: Flight.init())
 }
